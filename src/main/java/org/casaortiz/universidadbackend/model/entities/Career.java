@@ -3,9 +3,10 @@ package org.casaortiz.universidadbackend.model.entities;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "carrer")
+@Table(name = "career")
 public class Career {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +21,16 @@ public class Career {
     private LocalDateTime dischargeDate;
     @Column(name = "date_last_modification")
     private LocalDateTime dateLastModification;
+    @OneToMany(
+            mappedBy = "career",
+            fetch = FetchType.LAZY
+    )
+    private Set<Student> students;
+    @ManyToMany(
+            mappedBy = "careers",
+            fetch = FetchType.LAZY
+    )
+    private Set<Profesor> profesors;
 
     public Career() {
     }
@@ -77,6 +88,22 @@ public class Career {
 
     public void setDateLastModification(LocalDateTime dateLastModification) {
         this.dateLastModification = dateLastModification;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
+
+    public Set<Profesor> getProfesors() {
+        return profesors;
+    }
+
+    public void setProfesors(Set<Profesor> profesors) {
+        this.profesors = profesors;
     }
 
     @PrePersist

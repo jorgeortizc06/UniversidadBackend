@@ -1,10 +1,29 @@
 package org.casaortiz.universidadbackend.model.entities;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
-public class Profesor extends Person{
+@Entity
+@Table(name = "profesor")
+@PrimaryKeyJoinColumn(name = "person_id")
+
+public class Profesor extends Person {
 
     private BigDecimal salary;
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
+    @JoinTable(
+            name = "profesor_career",
+            joinColumns = @JoinColumn(name = "profesor_id"),
+            inverseJoinColumns = @JoinColumn(name = "career_id")
+    )
+    private Set<Career> careers;
 
     public Profesor() {
     }
@@ -22,5 +41,19 @@ public class Profesor extends Person{
         this.salary = salary;
     }
 
+    public Set<Career> getCareers() {
+        return careers;
+    }
 
+    public void setCareers(Set<Career> careers) {
+        this.careers = careers;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "\tProfesor{" +
+                "salary=" + salary +
+                '}';
+    }
 }
