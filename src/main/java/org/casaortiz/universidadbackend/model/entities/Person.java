@@ -1,18 +1,37 @@
 package org.casaortiz.universidadbackend.model.entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * @Inheritance(strategy = InheritanceType.JOINED) //(recomendable) crea una tabla padre y hace una relacion con las hijas
+ *      //table_per_class = genera una tabla por cada hija, lo cual genera redundancia
+ *      //sinlge_table = genera una sola tabla del padre junto a las hijas, debe permitir valores nulos
+ */
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+
 public abstract class Person implements Serializable {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false, length = 60)
     private String firstName;
+    @Column(nullable = false, length = 60)
     private String lastName;
+    @Column(nullable = false, unique = true, length = 10)
     private String dni;
+    @Column(name = "discharge_date")
     private LocalDateTime dischargeDate;
+    @Column(name = "date_last_modification")
     private LocalDateTime dateLastModification;
-
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "postalId", column = @Column(name = "postal_id")),
+            @AttributeOverride(name = "department", column = @Column(name = "department"))
+    })
     private Address address;
 
     public Person() {}
@@ -80,6 +99,16 @@ public abstract class Person implements Serializable {
     public void setAddress(Address address) {
         this.address = address;
     }
+
+    @PrePersist
+    private void beforePersist(){
+        this.dischargeDate = LocalDateTime.now();
+    }
+    @PreUpdate
+    private void beforeUpdate(){
+        this.dateLastModification = LocalDateTime.now();
+    }
+
 
     @Override
     public String toString() {

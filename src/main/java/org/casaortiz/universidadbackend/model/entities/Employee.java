@@ -2,11 +2,20 @@ package org.casaortiz.universidadbackend.model.entities;
 
 import org.casaortiz.universidadbackend.model.entities.enumeradores.EmployeeType;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
-public class Employee extends Person{
+@Entity
+@Table(name = "employee")
+@PrimaryKeyJoinColumn(name = "person_id")
+public class Employee extends Person {
     private BigDecimal salary;
+    @Column(name = "employee_type")
+    @Enumerated(EnumType.STRING)
     private EmployeeType employeeType;
+    @OneToOne(optional = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "pavilion_id", foreignKey = @ForeignKey(name = "FK_PAVILION_ID"))
+    private Pavilion pavilion;
 
     public Employee() {
     }
@@ -31,5 +40,23 @@ public class Employee extends Person{
 
     public void setEmployeeType(EmployeeType employeeType) {
         this.employeeType = employeeType;
+    }
+
+    public Pavilion getPavilion() {
+        return pavilion;
+    }
+
+    public void setPavilion(Pavilion pavilion) {
+        this.pavilion = pavilion;
+    }
+
+    @Override
+    public String toString() { //super.toString() => optengo el toString de mi padre
+        return super.toString() +
+                "\tEmployee{" +
+                "salary=" + salary +
+                ", employeeType=" + employeeType +
+                ", pavilion=" + pavilion +
+                '}';
     }
 }
