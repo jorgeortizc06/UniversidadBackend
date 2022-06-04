@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-@Service
+@Service //lo convierto un bean
 public class CareerDaoImpl implements CareerDao {
     @Autowired //inyecta la dependencia de nuestro repository
     private CareerRepository careerRepository;

@@ -13,14 +13,14 @@ public class CareerCommands implements CommandLineRunner {//para que se ejecute 
 
     @Override
     public void run(String... args) throws Exception {
-        Career ingSistemas = new Career(
+        /*Career ingSistemas = new Career(
                 null,
                 "Ingenieria en Sistemas",
                 50,
                 5
         );
-
         Career save = service.save(ingSistemas);
-        System.out.println(save.toString());
+        System.out.println(save.toString());*/
+
     }
 }
