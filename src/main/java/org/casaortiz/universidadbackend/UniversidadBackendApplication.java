@@ -10,6 +10,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class UniversidadBackendApplication {
     @Autowired
@@ -26,17 +28,19 @@ public class UniversidadBackendApplication {
     @Bean
     public CommandLineRunner runner(){
         return args -> {
-            Address address = new Address("calle falsa","123","1623","","");
+           /* Address address = new Address("calle falsa","123","1623","","");
             Person student = new Student(
                     null,
-                    "Raul",
-                    "Perez",
-                    "1111111111",
+                    "Juanito",
+                    "Omicron",
+                    "1111111112",
                     address
             );
 
             Person studentSave = studentDao.save(student);
-            System.out.println(studentSave.toString());
+            System.out.println(studentSave.toString());*/
+            List<Person> students = (List<Person>) studentDao.findAll();
+            students.forEach(System.out::println);
         };
     }
 
