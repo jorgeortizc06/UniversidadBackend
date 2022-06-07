@@ -14,8 +14,8 @@ import java.util.List;
 
 @SpringBootApplication
 public class UniversidadBackendApplication {
-    @Autowired
-    private StudentDao studentDao;
+    /*@Autowired
+    private StudentDao studentDao;*/
 
     public static void main(String[] args) {
         //getBeanDefinitionNames = Return array de strings con los beans
@@ -25,10 +25,10 @@ public class UniversidadBackendApplication {
         }*/
     }
 
-    @Bean
+    /*@Bean
     public CommandLineRunner runner(){
         return args -> {
-           /* Address address = new Address("calle falsa","123","1623","","");
+           *//* Address address = new Address("calle falsa","123","1623","","");
             Person student = new Student(
                     null,
                     "Juanito",
@@ -38,10 +38,10 @@ public class UniversidadBackendApplication {
             );
 
             Person studentSave = studentDao.save(student);
-            System.out.println(studentSave.toString());*/
+            System.out.println(studentSave.toString());*//*
             List<Person> students = (List<Person>) studentDao.findAll();
             students.forEach(System.out::println);
         };
-    }
+    }*/
 
 }

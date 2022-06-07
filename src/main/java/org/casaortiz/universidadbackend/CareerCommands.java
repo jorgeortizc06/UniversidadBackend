@@ -24,13 +24,25 @@ public class CareerCommands implements CommandLineRunner {//para que se ejecute 
         Career save = service.save(ingSistemas);
         System.out.println(save.toString());*/
 
+        Career career = null;
         Optional<Career> oCarrer = service.findById(1);
         if(oCarrer.isPresent()){//si hay carrera
-            Career career = oCarrer.get();
+            career = oCarrer.get();
             System.out.println(career.toString());
         }else{
             System.out.println("Carrera no encontrada");
         }
+
+        career.setAmountSubjectMatter(65);
+        career.setNumberYears(6);
+
+        service.save(career);
+
+        System.out.println(service.findById(1).orElse(new Career()).toString());
+
+        service.deleteById(1);
+
+        System.out.println(service.findById(1).orElse(new Career()).toString());
 
     }
 }
