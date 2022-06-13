@@ -7,4 +7,8 @@ import org.casaortiz.universidadbackend.model.entities.Career;
  */
 public interface CareerDao extends GenericDao<Career>{
 
+    Iterable<Career> findCareersByNameContains(String name);
+    Iterable<Career> findCareersByNameIgnoreCase(String name);
+    Iterable<Career> findCareersByNumberYearsAfter(Integer numberYears);
+
 }

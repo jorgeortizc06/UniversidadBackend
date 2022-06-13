@@ -11,9 +11,9 @@ import java.util.Optional;
 public interface PersonRepository extends CrudRepository<Person, Integer> {
 
     @Query("select p from Person p where p.firstName = ?1 and p.lastName = ?2")
-    Optional<Person> searchByFirstLastName(String firstname, String lastName);
+    Optional<Person> findByFirstLastName(String firstname, String lastName);
     @Query("select p from Person p where p.dni = ?1")
-    Optional<Person> searchByDni(String dni);
+    Optional<Person> findByDni(String dni);
     @Query("select p from Person p where p.lastName like %?1%")
-    Iterable<Person> searchPersonByLastName(String lastName);
+    Iterable<Person> findPersonByLastName(String lastName);
 }

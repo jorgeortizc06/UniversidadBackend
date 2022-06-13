@@ -15,19 +15,19 @@ public class PersonDaoImpl extends GenericDaoImpl<Person, PersonRepository> impl
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Person> searchByFirstLastName(String firstname, String lastName) {
-        return repository.searchByFirstLastName(firstname, lastName);
+    public Optional<Person> findByFirstLastName(String firstname, String lastName) {
+        return repository.findByFirstLastName(firstname, lastName);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Person> searchByDni(String dni) {
-        return repository.searchByDni(dni);
+    public Optional<Person> findByDni(String dni) {
+        return repository.findByDni(dni);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Iterable<Person> searchPersonByLastName(String lastName) {
-        return repository.searchPersonByLastName(lastName);
+    public Iterable<Person> findPersonByLastName(String lastName) {
+        return repository.findPersonByLastName(lastName);
     }
 }

@@ -4,5 +4,5 @@ package org.casaortiz.universidadbackend.services.agreement;
 import org.casaortiz.universidadbackend.model.entities.Person;
 
 public interface StudentDao extends PersonDao{
-    Iterable<Person> searchStudentByCareerName(String nameCarrer);
+    Iterable<Person> findStudentByCareerName(String nameCarrer);
 }

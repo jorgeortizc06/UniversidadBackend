@@ -20,7 +20,7 @@ public class StudentDaoImpl extends PersonDaoImpl implements StudentDao {
     }
 
     @Override
-    public Iterable<Person> searchStudentByCareerName(String nameCarrer) {
-        return ((StudentRepository) repository).searchStudentByCareerName(nameCarrer);
+    public Iterable<Person> findStudentByCareerName(String nameCarrer) {
+        return ((StudentRepository) repository).findStudentByCareerName(nameCarrer);
     }
 }

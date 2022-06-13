@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository("repositoryStudents") //define el bean con ese nombre
 public interface StudentRepository extends PersonRepository{
     @Query("Select s from Student s where s.career.name = ?1")
-    Iterable<Person> searchStudentByCareerName(String nameCarrer);
+    Iterable<Person> findStudentByCareerName(String nameCarrer);
 }
